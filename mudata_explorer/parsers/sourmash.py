@@ -6,6 +6,9 @@ def parse_df(abund: pd.DataFrame) -> Tuple[pd.DataFrame, pd.DataFrame]:
     # The samples are in the columns, so transpose the table
     abund = abund.T
 
+    # Divide by the row sum to get a proportion
+    abund = abund.apply(lambda x: x / x.sum(), axis=1)
+
     # Build a taxonomy table by splitting up the taxonomic strings
 
     tax = pd.DataFrame([
