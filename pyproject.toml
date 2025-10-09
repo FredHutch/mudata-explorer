@@ -1,0 +1,26 @@
+[project]
+name = "mudata-explorer"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "anndata>=0.12.2",
+    "biom-format>=2.1.17",
+    "cirro==1.5.4",
+    "geoparse>=2.0.4",
+    "kaleido==0.2.1",
+    "leidenalg>=0.10.2",
+    "muon>=0.1.7",
+    "numpy<2.0.0",
+    "openpyxl>=3.1.5",
+    "pandas>=2.3.3",
+    "plotly>=6.3.1",
+    "pydeseq2>=0.5.2",
+    "scanpy>=1.11.4",
+    "scikit-learn>=1.7.2",
+    "seaborn>=0.13.2",
+    "streamlit>=1.50.0",
+    "streamlit-extras>=0.7.8",
+    "umap-learn>=0.5.9.post2",
+]

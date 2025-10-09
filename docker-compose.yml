@@ -1,0 +1,20 @@
+version: '3.3'
+services:
+  mudata-explorer:
+    image: sc-registry.fredhutch.org/mudata-explorer:latest
+    networks:
+      - sc-swarm-net
+    deploy:
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.mudata-explorer.rule=Host(`mudata-explorer.fredhutch.org`)"
+        - "traefik.http.routers.mudata-explorer-secured.rule=Host(`mudata-explorer.fredhutch.org`)"
+        - "traefik.http.routers.mudata-explorer.entrypoints=web,web-secured"
+        - "traefik.http.services.mudata-explorer.loadbalancer.server.port=8000" # it seems you always need to give traefik a port so it 'notices' the service
+        - "traefik.http.routers.mudata-explorer.tls=true"
+
+networks:
+  sc-swarm-net:
+    external: true
