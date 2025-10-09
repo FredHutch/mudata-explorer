@@ -9,6 +9,7 @@ from mudata_explorer.app.mdata import get_mdata, set_mdata
 from mudata_explorer.app.hash import get_dat_hash, set_mdata_hash
 from mudata_explorer.helpers.io import hydrate_uns
 from mudata_explorer.helpers.cirro_readers import util, mudata, ampliseq, biom, metaphlan, gig_map
+from mudata_explorer.helpers.cirro_readers import sourmash
 from mudata_explorer.helpers.cirro_readers import differential_abundance
 from mudata_explorer.helpers.cirro_readers import curatedMetagenomicData
 import streamlit as st
@@ -363,7 +364,6 @@ def _read_dataset(
                 return False
             else:
                 return None
-            
 
     # MuData datasets
     if dataset.process_id == "mudata-h5mu":
@@ -409,14 +409,21 @@ def _read_dataset(
             return True
         else:
             return differential_abundance.read(dataset)
-        
+
     # Metaphlan taxonomic classification datasets
     elif dataset.process_id == "process-hutch-metaphlan-paired-1-0":
         if check_only:
             return True
         else:
             return metaphlan.read(dataset)
-        
+
+    # Sourmash taxonomic classification datasets
+    elif dataset.process_id == "hutch-sourmash-tax":
+        if check_only:
+            return True
+        else:
+            return sourmash.read(dataset)
+
     # gig-map alignment datasets
     elif dataset.process_id == "hutch-gig-map-align-pangenome-1-0":
         if check_only:

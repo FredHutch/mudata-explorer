@@ -123,7 +123,7 @@ def _load_data_biom():
     biom = st.file_uploader("Upload a BIOM file", type=["biom"])
     if biom is None:
         return
-    
+
     with NamedTemporaryFile() as f:
         f.write(biom.getvalue())
         f.seek(0)
@@ -163,7 +163,7 @@ def _load_data_metaphlan():
     abund = _read_table("Upload the abundance table", comment="#")
     if abund is None:
         return
-        
+
     # The user must select which taxonomic level to use
     tax_level = st.selectbox(
         "Taxonomic Level",
@@ -205,7 +205,8 @@ def run():
                 "process-nf-core-ampliseq-2-4-0",
                 "curated_metagenomic_data",
                 "process-hutch-metaphlan-paired-1-0",
-                "hutch-gig-map-align-pangenome-1-0"
+                "hutch-gig-map-align-pangenome-1-0",
+                "hutch-sourmash-tax"
             ],
             show_link=False
         )
