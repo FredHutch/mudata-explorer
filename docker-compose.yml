@@ -8,6 +8,8 @@ services:
       restart_policy:
         condition: on-failure
       labels:
+        - "org.fredhutch.app.owner=ndey@fredhutch.org"
+        - "org.fredhutch.github.repo=mudata-explorer"
         - "traefik.enable=true"
         - "traefik.http.routers.mudata-explorer.rule=Host(`mudata-explorer.fredhutch.org`)"
         - "traefik.http.routers.mudata-explorer-secured.rule=Host(`mudata-explorer.fredhutch.org`)"
